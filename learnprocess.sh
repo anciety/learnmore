@@ -1,4 +1,3 @@
-
 #! /bin/bash
 
 echo -e "\e[32m:::        ::::::::::     :::     :::::::::  ::::    :::      ::::    ::::   ::::::::  :::::::::  ::::::::::"
@@ -33,7 +32,7 @@ if [[ $opt == "!helpmelearn" ]]; then
 	exit 1
 fi	
 
-if [[ $opt == "y" && $age -lt 18 ]]; then
+if [[ $opt == "y" ]]; then
 	echo -n "Have you got experience already with penetration testing, programming etc.. etc..?(y/n) "
 	read opt1
 fi
@@ -41,21 +40,27 @@ fi
 		printf "Oh Wow $age years old and already having expierience with penetration testing, that's awesome!\n"
 		printf "Well this was all and hopefully you'll keep learning on the way ;)\n"
 
-		else if [[ $age -gt 18 ]]; then
-			echo -n "Oh okay so you're $age years old, do you have a job? (y/n)"
-			read job
+		else if [[ $opt1 == "n" ]]; then
+			printf "Well then use the !helpmelearn command next time you use this script ya bastard!\n"
+			exit 1
 		fi
 
-	if [[ $job == "y" ]]; then
-		echo -n "Oh okay what do you do for a job? "
-		read job
-		printf "Oh that's cool i always wanted to do $job!\n"
-	else if [[ $job != "y" && $job != "n" ]]; then
-		printf "$job is a invalid option! Exiting..\n"
-		exit
-	else
-		printf "You should be working already..\n"
-		printf "Well this was all and get a job ya bastard!\n"
-fi
+		if [[ $opt1 == "y" && $age -gt 17 ]]; then
+			echo -n "Oh okay so you're $age years old, do you have a job? (y/n)"
+			read job
+		if [[ $job == "y" ]]; then
+			echo -n "Okay cool, what do you do for a job? "
+			read whatjob
+			printf "Oh cool, $whatjob is interesting\n"
+			printf "Well this was all and hopefully you'll learn more on the way! :)"
+		fi
+
+	else if [[ $job == "n" ]]; then
+		echo -n "Well shit.. Get yourself a job, some money and start learning you bastard.."
+		printf "Use the !helpmelearn option next time to begin with learning IT Security\n"
+	else 
+		printf "$job is an invalid option! Exiting.."
+		exit 1
+	fi
 fi
 fi
